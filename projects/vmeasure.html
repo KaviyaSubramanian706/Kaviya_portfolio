@@ -4,46 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V-Measure Architectural Blueprint</title>
-    <script src="https://cdn.jsdelivr.net/cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>body { background-color: #0b0f19; }</style>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #0b0f19; color: #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 2rem 1rem; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .back-link { color: #22d3ee; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; }
+        .back-link:hover { text-decoration: underline; }
+        main { background: rgba(17, 25, 40, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; padding: 2rem; }
+        .meta-header { display: flex; justify-content: space-between; align-items: flex-start; border-b: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+        .company-tag { color: #22d3ee; background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.2); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; padding: 0.25rem 0.5rem; border-radius: 0.25rem; }
+        h1 { font-size: 2rem; font-weight: 800; color: #fff; margin-top: 0.5rem; }
+        .timeline { font-family: monospace; font-size: 0.85rem; color: #9ca3af; }
+        .nda-banner { background: rgba(217, 119, 6, 0.1); border: 1px solid rgba(217, 119, 6, 0.2); color: #fbbf24; padding: 1rem; border-radius: 0.75rem; font-size: 0.85rem; margin-bottom: 2rem; display: flex; gap: 0.5rem; }
+        h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: #22d3ee; margin-bottom: 0.5rem; margin-top: 1.5rem; }
+        p { color: #d1d5db; font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
+        ul { list-style: none; margin-top: 0.5rem; }
+        li { margin-bottom: 0.75rem; font-size: 0.95rem; color: #d1d5db; position: relative; padding-left: 1.25rem; }
+        li::before { content: "•"; position: absolute; left: 0; color: #22d3ee; font-weight: bold; }
+    </style>
 </head>
-<body class="text-gray-200 font-sans min-h-screen p-6 md:p-12">
-    <div class="max-w-4xl mx-auto">
-        <a href="../index.html" class="text-sm font-medium text-cyan-400 hover:underline inline-flex items-center gap-2 mb-8">
-            <i class="fas fa-arrow-left"></i> Back to Engineering Portfolio
-        </a>
-        
-        <main class="bg-slate-900/65 backdrop-blur-xl border border-white/8 p-8 rounded-3xl">
-            <div class="flex flex-wrap justify-between items-start border-b border-slate-800 pb-6 mb-6 gap-4">
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Back to Engineering Portfolio</a>
+        <main>
+            <div class="meta-header">
                 <div>
-                    <span class="text-xs font-semibold uppercase text-cyan-400 bg-cyan-950/50 px-2.5 py-1 rounded border border-cyan-900">VisAi Labs</span>
-                    <h1 class="text-3xl font-extrabold mt-2 text-white">V-Measure: Logistics Volumetric QA Gate</h1>
+                    <span class="company-tag">VisAi Labs</span>
+                    <h1>V-Measure: Logistics Volumetric QA Gate</h1>
                 </div>
-                <span class="text-sm font-mono text-gray-500">Timeline: 2023 - 2024</span>
+                <span class="timeline">2023 - 2024</span>
             </div>
-
-            <div class="bg-amber-950/30 border border-amber-900/50 rounded-xl p-4 mb-6 text-sm flex gap-3 text-amber-300">
-                <i class="fas fa-lock mt-0.5"></i>
-                <p><strong>Confidential Architecture Node:</strong> Original source implementation is subject to strict non-disclosure mappings. High-level infrastructural topology provided below defines open system-design evaluation workflows.</p>
+            <div class="nda-banner">
+                <span>🔒</span>
+                <p><strong>Confidential Architecture Node:</strong> Original source implementation is subject to strict non-disclosure mappings. High-level infrastructural topology provided below defines open system-design workflows.</p>
             </div>
-
-            <section class="space-y-6">
-                <div>
-                    <h3 class="text-cyan-400 font-semibold tracking-wide text-sm uppercase mb-2"><i class="fas fa-bullseye mr-2"></i>Executive Summary</h3>
-                    <p class="text-gray-300 text-sm md:text-base leading-relaxed">A structural measurement validation solution designed for logistics hubs, filtering out human operator and environment point cloud noise through advanced data pipelines and edge gates.</p>
-                </div>
-
-                <div>
-                    <h3 class="text-cyan-400 font-semibold tracking-wide text-sm uppercase mb-3"><i class="fas fa-cogs mr-2"></i>Core Engineering Architecture</h3>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li class="flex items-start gap-2.5"><i class="fas fa-check text-cyan-500 mt-1 text-xs"></i> <strong>R&D System Scoping:</strong> Formulated three parallel research architectures (Scene Background Modeling, RGB Segmentation Masks, and Binary Validation QA gates) for enterprise leadership review.</li>
-                        <li class="flex items-start gap-2.5"><i class="fas fa-check text-cyan-500 mt-1 text-xs"></i> <strong>Micro-Edge Tuning:</strong> Selected and engineered a compressed MobileNetV2 architecture compiled via TF Lite quantization for localized execution on Raspberry Pi nodes.</li>
-                        <li class="flex items-start gap-2.5"><i class="fas fa-check text-cyan-500 mt-1 text-xs"></i> <strong>Class Imbalance Engineering:</strong> Resolved extreme long-tail datasets (only 100 anomaly images vs. 100,000 reference standards) by combining Focal Loss tracking configurations, synthetic mix-and-match engines, and custom data resampling loops.</li>
-                        <li class="flex items-start gap-2.5"><i class="fas fa-check text-cyan-500 mt-1 text-xs"></i> <strong>Explainable AI (XAI) Debugging:</strong> Created visual layer checking mechanics using Grad-CAM heatmaps, forcing visibility into black-box feature evaluations to audit error matrices.</li>
-                    </ul>
-                </div>
-            </section>
+            <h3>📋 Executive Summary</h3>
+            <p>A structural measurement validation solution designed for logistics hubs, filtering out human operator and environment point cloud noise through advanced data pipelines and edge gates.</p>
+            
+            <h3>🛠️ Core Engineering Architecture</h3>
+            <ul>
+                <li><strong>R&D System Scoping:</strong> Formulated three parallel research architectures (Scene Background Modeling, RGB Segmentation Masks, and Binary Validation QA gates) for enterprise leadership review.</li>
+                <li><strong>Micro-Edge Tuning:</strong> Selected and engineered a compressed MobileNetV2 architecture compiled via TF Lite quantization for localized execution on Raspberry Pi nodes.</li>
+                <li><strong>Class Imbalance Engineering:</strong> Resolved extreme long-tail datasets (only 100 anomaly images vs. 100,000 reference standards) by combining Focal Loss tracking configurations, synthetic mix-and-match engines, and custom data resampling loops.</li>
+                <li><strong>Explainable AI (XAI) Debugging:</strong> Created visual layer checking mechanics using Grad-CAM heatmaps, forcing visibility into black-box feature evaluations to audit error matrices.</li>
+            </ul>
         </main>
     </div>
 </body>
