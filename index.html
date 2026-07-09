@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineering Portfolio | AI & Computer Vision</title>  
+    <title>Engineering Portfolio | Kaviya Subramanian</title>
     <style>
         * { 
             box-sizing: border-box; 
@@ -37,6 +37,8 @@
         .container { 
             max-width: 1000px; 
             margin: 0 auto; 
+            position: relative;
+            z-index: 2;
         }
 
         /* Hero / Profile Header Section */
@@ -52,6 +54,8 @@
             padding: 2.5rem;
             margin-bottom: 4rem;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 5;
         }
 
         .profile-pic {
@@ -87,6 +91,8 @@
         .social-links {
             display: flex;
             gap: 1rem;
+            position: relative;
+            z-index: 10;
         }
 
         .social-links a {
@@ -101,6 +107,9 @@
             color: var(--text-muted);
             transition: all 0.3s ease;
             text-decoration: none;
+            position: relative;
+            z-index: 12;
+            cursor: pointer;
         }
 
         .social-links a:hover {
@@ -114,6 +123,7 @@
             width: 20px;
             height: 20px;
             fill: currentColor;
+            pointer-events: none; /* Keeps the SVG from blocking the link click */
         }
 
         /* Section Headings */
@@ -133,6 +143,8 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
+            position: relative;
+            z-index: 5;
         }
 
         @media (min-width: 768px) {
@@ -155,6 +167,7 @@
             flex-direction: column;
             justify-content: space-between;
             transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
         }
 
         .project-card:hover {
@@ -247,7 +260,7 @@
         
         <!-- Connected Hero Segment -->
         <header class="hero-section">
-            <img src="profile.jpg" alt="Engineering Profile" class="profile-pic">
+            <img src="profile.jpg" alt="Kaviya Subramanian" class="profile-pic">
             
             <div class="hero-text">
                 <h1>Kaviya Subramanian</h1>
