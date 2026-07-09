@@ -178,18 +178,12 @@
         .badge-visai { color: var(--cyan); background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.2); }
         .date-label { font-size: 0.75rem; color: rgba(255, 255, 255, 0.4); font-family: monospace; }
         
-        .project-link {
+        .project-heading {
             font-size: 1.25rem;
             font-weight: 700;
             color: #fff;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            margin-bottom: 0.5rem;
         }
-        .project-link:hover { color: var(--cyan); }
-        .project-link svg { width: 1rem; height: 1rem; fill: currentColor; transition: transform 0.2s; }
-        .project-link:hover svg { transform: translate(2px, -2px); }
         
         .project-text {
             color: var(--text-muted);
@@ -207,8 +201,18 @@
             align-items: center;
         }
         .tech-stack-label { font-size: 0.75rem; font-family: monospace; color: rgba(34, 211, 238, 0.7); }
-        .view-more-link { font-size: 0.75rem; font-weight: 500; color: var(--cyan); text-decoration: none; }
-        .view-more-link:hover { text-decoration: underline; }
+        
+        .view-more-link { 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            color: var(--cyan); 
+            text-decoration: none; 
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .view-more-link:hover { text-decoration: underline; color: #fff; }
+        .view-more-link svg { width: 0.85rem; height: 0.85rem; fill: currentColor; }
 
         footer.global-footer {
             border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -223,6 +227,7 @@
 <body>
 
     <div class="container">
+        <!-- Header -->
         <header>
             <div>
                 <h1 class="profile-title">Kaviya Subramanian</h1>
@@ -239,6 +244,7 @@
             </div>
         </header>
 
+        <!-- Core Grid Stack Matrix -->
         <section class="skills-section">
             <div class="glass-card">
                 <h3>🛠️ Core Expertise Matrix</h3>
@@ -253,48 +259,103 @@
             </div>
         </section>
 
+        <!-- Projects Index List (Chronological Order: Latest First) -->
         <h2 class="portfolio-title">Production Engineering Portfolio</h2>
         <main class="projects-grid">
 
+            <!-- 1. SASO (2025 - 2026) -->
             <div class="glass-card flex-col">
                 <div class="card-header">
                     <span class="badge badge-masterworks">Masterworks</span>
                     <span class="date-label">2025 - 2026</span>
                 </div>
-                <a href="projects/saso.html" class="project-link">
-                    SASO: Automated Inspection System
-                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg>
-                </a>
+                <h3 class="project-heading">SASO: Automated Inspection System</h3>
                 <p class="project-text">Enterprise multi-stage vehicle scan tracking architecture monitoring safety deviations and automated license plate edge fixes using YOLO11 pipelines, Triton Servers, and LLM evaluation frameworks.</p>
                 <div class="card-footer">
                     <span class="tech-stack-label">YOLO11 • Triton • RAG</span>
-                    <a href="projects/saso.html" class="view-more-link">System Design &rarr;</a>
+                    <a href="projects/saso.html" class="view-more-link">
+                        View System Design Blueprint
+                        <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg>
+                    </a>
                 </div>
             </div>
 
-            <div class="glass-card flex-col">
-                <div class="card-header">
-                    <span class="badge badge-visai">VisAi Labs</span>
-                    <span class="date-label">2022 - 2023</span>
-                </div>
-                <a href="projects/retailytix.html" class="project-link">
-                    Retailytix: Multi-Camera Tracker
-                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg>
-                </a>
-                <p class="project-text">Distributed cross-camera surveillance processing matrices across Jetson Nano units. Implements custom dual-input RGB-D fusion, pruning strategies, and homography floor transformations.</p>
-                <div class="card-footer">
-                    <span class="tech-stack-label">TensorRT • OC-SORT • DVC</span>
-                    <a href="projects/retailytix.html" class="view-more-link">System Design &rarr;</a>
-                </div>
-            </div>
-
+            <!-- 2. V-Measure (2023 - 2024) -->
             <div class="glass-card flex-col">
                 <div class="card-header">
                     <span class="badge badge-visai">VisAi Labs</span>
                     <span class="date-label">2023 - 2024</span>
                 </div>
-                <a href="projects/vmeasure.html" class="project-link">
-                    V-Measure: Logistics Dimensioning
-                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg>
-                </a>
+                <h3 class="project-heading">V-Measure: Logistics Dimensioning</h3>
                 <p class="project-text">Volumetric processing pipeline mitigating industrial noise within logistics environments. Features TF Lite deployment gates over Raspberry Pi and Grad-CAM layers tracking explainable execution error logs.</p>
+                <div class="card-footer">
+                    <span class="tech-stack-label">MobileNetV2 • TF Lite • XAI</span>
+                    <a href="projects/vmeasure.html" class="view-more-link">
+                        View System Design Blueprint
+                        <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. Retailytix (2022 - 2023) -->
+            <div class="glass-card flex-col">
+                <div class="card-header">
+                    <span class="badge badge-visai">VisAi Labs</span>
+                    <span class="date-label">2022 - 2023</span>
+                </div>
+                <h3 class="project-heading">Retailytix: Multi-Camera Tracker</h3>
+                <p class="project-text">Distributed cross-camera surveillance processing matrices across Jetson Nano units. Implements custom dual-input RGB-D fusion, pruning strategies, and homography floor transformations.</p>
+                <div class="card-footer">
+                    <span class="tech-stack-label">TensorRT • OC-SORT • DVC</span>
+                    <a href="projects/retailytix.html" class="view-more-link">
+                        View System Design Blueprint
+                        <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. V-Track (2021) -->
+            <div class="glass-card flex-col">
+                <div class="card-header">
+                    <span class="badge badge-visai">VisAi Labs</span>
+                    <span class="date-label">2021</span>
+                </div>
+                <h3 class="project-heading">V-Track: Lift Flow Analytics</h3>
+                <p class="project-text">Top-down head detection optimizer inside elevator spaces built over YOLOv2-Tiny models, utilizing customized weight profiles and door-state checks to preserve customer identity vectors.</p>
+                <div class="card-footer">
+                    <span class="tech-stack-label">YOLOv2 • Jetson Nano</span>
+                    <a href="projects/vtrack.html" class="view-more-link">
+                        View System Design Blueprint
+                        <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 5. ViuDience (2020) -->
+            <div class="glass-card flex-col span-2">
+                <div class="card-header">
+                    <span class="badge badge-visai">e-con Systems / VisAi Labs</span>
+                    <span class="date-label">2020</span>
+                </div>
+                <h3 class="project-heading">ViuDience: Digital Signage Retail Demographics Platform</h3>
+                <p class="project-text">Edge analytics engine executing multi-task feature pipelines (gaze, expressions, height configurations) bundled directly inside custom pre-compiled Qt application windows driving Intel OpenVINO runtime environments.</p>
+                <div class="card-footer">
+                    <span class="tech-stack-label">OpenVINO • Qt (PyQt/C++) • Multi-Task Inference</span>
+                    <a href="projects/viudience.html" class="view-more-link">
+                        View System Design Blueprint
+                        <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="global-footer">
+        <div class="container">
+            <p>🔒 Production systems are subject to enterprise non-disclosure protections. Structural system workflows and technical strategies listed are engineered for high-level technical evaluation loops.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
