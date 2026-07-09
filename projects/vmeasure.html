@@ -6,48 +6,132 @@
     <title>V-Measure Architectural Blueprint</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: #0b0f19; color: #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 2rem 1rem; }
-        .container { max-width: 800px; margin: 0 auto; }
-        .back-link { color: #22d3ee; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; }
-        .back-link:hover { text-decoration: underline; }
-        main { background: rgba(17, 25, 40, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; padding: 2rem; }
-        .meta-header { display: flex; justify-content: space-between; align-items: flex-start; border-b: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-        .company-tag { color: #22d3ee; background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.2); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; padding: 0.25rem 0.5rem; border-radius: 0.25rem; }
-        h1 { font-size: 2rem; font-weight: 800; color: #fff; margin-top: 0.5rem; }
-        .timeline { font-family: monospace; font-size: 0.85rem; color: #9ca3af; }
-        .nda-banner { background: rgba(217, 119, 6, 0.1); border: 1px solid rgba(217, 119, 6, 0.2); color: #fbbf24; padding: 1rem; border-radius: 0.75rem; font-size: 0.85rem; margin-bottom: 2rem; display: flex; gap: 0.5rem; }
-        h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: #22d3ee; margin-bottom: 0.5rem; margin-top: 1.5rem; }
-        p { color: #d1d5db; font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
-        ul { list-style: none; margin-top: 0.5rem; }
-        li { margin-bottom: 0.75rem; font-size: 0.95rem; color: #d1d5db; position: relative; padding-left: 1.25rem; }
-        li::before { content: "•"; position: absolute; left: 0; color: #22d3ee; font-weight: bold; }
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(17, 25, 40, 0.75);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --cyan: #22d3ee;
+            --teal: #2dd4bf;
+        }
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, #111827 0px, transparent 50%),
+                radial-gradient(at 50% 0%, rgba(14, 116, 144, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            padding: 4rem 1.5rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        .back-link { 
+            color: var(--cyan); 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            margin-bottom: 2rem; 
+        }
+        .back-link:hover { color: #fff; text-decoration: underline; }
+        .back-link svg { width: 1rem; height: 1rem; fill: currentColor; }
+        
+        .project-header-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .meta-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            padding-bottom: 1rem; 
+            margin-bottom: 1rem;
+        }
+        .company-tag { 
+            color: var(--cyan); 
+            background: rgba(34, 211, 238, 0.1); 
+            border: 1px solid rgba(34, 211, 238, 0.2); 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            padding: 0.25rem 0.5rem; 
+            border-radius: 0.25rem; 
+        }
+        h1 { font-size: 2.25rem; font-weight: 800; color: #fff; letter-spacing: -0.03em; }
+        .timeline { font-family: monospace; font-size: 0.85rem; color: rgba(255, 255, 255, 0.4); }
+        
+        .nda-banner { 
+            background: rgba(217, 119, 6, 0.08); 
+            border: 1px solid rgba(217, 119, 6, 0.15); 
+            color: #fbbf24; 
+            padding: 1rem; 
+            border-radius: 0.75rem; 
+            font-size: 0.85rem; 
+            display: flex; 
+            gap: 0.75rem; 
+        }
+        h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--cyan); margin-bottom: 1.5rem; margin-top: 3rem; }
+        .summary-text { color: var(--text-main); font-size: 1.1rem; font-weight: 400; line-height: 1.7; }
+        
+        .architecture-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        @media (min-width: 768px) { .architecture-grid { grid-template-columns: repeat(2, 1fr); } }
+        
+        .feature-card { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 0.75rem; padding: 1.5rem; transition: all 0.2s ease; }
+        .feature-card:hover { background: rgba(255, 255, 255, 0.04); border-color: rgba(34, 211, 238, 0.2); }
+        .feature-card h4 { color: #fff; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .feature-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="../index.html" class="back-link">&larr; Back to Engineering Portfolio</a>
-        <main>
+        <a href="../index.html" class="back-link">
+            <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            Back to Engineering Portfolio
+        </a>
+        <header class="project-header-card">
             <div class="meta-header">
-                <div>
-                    <span class="company-tag">VisAi Labs</span>
-                    <h1>V-Measure: Logistics Volumetric QA Gate</h1>
-                </div>
+                <span class="company-tag">VisAi Labs</span>
                 <span class="timeline">2023 - 2024</span>
             </div>
-            <div class="nda-banner">
+            <h1>V-Measure: Logistics Volumetric QA Gate</h1>
+            <div class="nda-banner" style="margin-top: 1.5rem;">
                 <span>🔒</span>
-                <p><strong>Confidential Architecture Node:</strong> Original source implementation is subject to strict non-disclosure mappings. High-level infrastructural topology provided below defines open system-design workflows.</p>
+                <div><strong>Confidential Architecture Node:</strong> Original source implementation is subject to strict NDA provisions. High-level open topologies listed below are compiled for functional verification reviews.</div>
             </div>
-            <h3>📋 Executive Summary</h3>
-            <p>A structural measurement validation solution designed for logistics hubs, filtering out human operator and environment point cloud noise through advanced data pipelines and edge gates.</p>
-            
-            <h3>🛠️ Core Engineering Architecture</h3>
-            <ul>
-                <li><strong>R&D System Scoping:</strong> Formulated three parallel research architectures (Scene Background Modeling, RGB Segmentation Masks, and Binary Validation QA gates) for enterprise leadership review.</li>
-                <li><strong>Micro-Edge Tuning:</strong> Selected and engineered a compressed MobileNetV2 architecture compiled via TF Lite quantization for localized execution on Raspberry Pi nodes.</li>
-                <li><strong>Class Imbalance Engineering:</strong> Resolved extreme long-tail datasets (only 100 anomaly images vs. 100,000 reference standards) by combining Focal Loss tracking configurations, synthetic mix-and-match engines, and custom data resampling loops.</li>
-                <li><strong>Explainable AI (XAI) Debugging:</strong> Created visual layer checking mechanics using Grad-CAM heatmaps, forcing visibility into black-box feature evaluations to audit error matrices.</li>
-            </ul>
+        </header>
+        <h3>📋 Executive Summary</h3>
+        <p class="summary-text">A structural measurement validation solution designed for logistics hubs, filtering out human operator and environment point cloud noise through advanced data pipelines and edge gates.</p>
+        <h3>🛠️ Core Engineering Architecture</h3>
+        <main class="architecture-grid">
+            <div class="feature-card">
+                <h4>R&D System Scoping</h4>
+                <p>Formulated three parallel research paths (Scene Background Modeling, RGB Segmentation Masks, and Binary Validation gates) for high-level enterprise assessment.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Micro-Edge Tuning</h4>
+                <p>Selected and custom-engineered a compressed MobileNetV2 architecture compiled via TF Lite quantization targets for localized execution on Raspberry Pi nodes.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Class Imbalance Engineering</h4>
+                <p>Resolved extreme long-tail datasets (100 anomaly images vs. 100k standard frames) by combining Focal Loss tracking configurations and synthetic resampling loops.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Explainable AI (XAI) Debugging</h4>
+                <p>Created visual layer checking mechanics using Grad-CAM heatmaps, forcing visibility into black-box feature evaluations to audit error matrices.</p>
+            </div>
         </main>
     </div>
 </body>
