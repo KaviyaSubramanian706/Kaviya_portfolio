@@ -27,7 +27,8 @@
             line-height: 1.6;
             padding: 4rem 1.5rem;
         }
-        .container { max-width: 800px; margin: 0 auto; }
+        .container { max-width: 900px; margin: 0 auto; }
+        
         .back-link { 
             color: var(--cyan); 
             text-decoration: none; 
@@ -43,23 +44,23 @@
         .back-link:hover { color: #fff; text-decoration: underline; }
         .back-link svg { width: 1rem; height: 1rem; fill: currentColor; }
         
-        main { 
-            background: var(--card-bg); 
+        /* Glass Header Module */
+        .project-header-card {
+            background: var(--card-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color); 
-            border-radius: 1.5rem; 
-            padding: 2.5rem; 
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
         .meta-header { 
             display: flex; 
             justify-content: space-between; 
-            align-items: flex-start; 
+            align-items: center; 
             border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
-            padding-bottom: 1.5rem; 
-            margin-bottom: 2rem; 
-            flex-wrap: wrap; 
-            gap: 1rem; 
+            padding-bottom: 1rem; 
+            margin-bottom: 1rem;
         }
         .company-tag { 
             color: var(--emerald); 
@@ -72,10 +73,9 @@
             border-radius: 0.25rem; 
         }
         h1 { 
-            font-size: 2rem; 
+            font-size: 2.25rem; 
             font-weight: 800; 
             color: #fff; 
-            margin-top: 0.5rem; 
             letter-spacing: -0.03em;
         }
         .timeline { font-family: monospace; font-size: 0.85rem; color: rgba(255, 255, 255, 0.4); }
@@ -84,33 +84,59 @@
             background: rgba(217, 119, 6, 0.08); 
             border: 1px solid rgba(217, 119, 6, 0.15); 
             color: #fbbf24; 
-            padding: 1.25rem; 
+            padding: 1rem; 
             border-radius: 0.75rem; 
             font-size: 0.85rem; 
-            margin-bottom: 2.5rem; 
             display: flex; 
             gap: 0.75rem; 
         }
+
+        /* Section Headings */
         h3 { 
-            font-size: 0.75rem; 
+            font-size: 0.85rem; 
             text-transform: uppercase; 
             letter-spacing: 0.15em; 
             color: var(--cyan); 
-            margin-bottom: 1rem; 
-            margin-top: 2rem; 
+            margin-bottom: 1.5rem; 
+            margin-top: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
-        ul { list-style: none; }
-        li { margin-bottom: 1rem; font-size: 0.95rem; color: var(--text-muted); position: relative; padding-left: 1.5rem; }
-        li::before { 
-            content: ""; 
-            position: absolute; 
-            left: 0; 
-            top: 0.6rem;
-            width: 6px;
-            height: 6px;
-            background: var(--cyan); 
-            border-radius: 50%;
+        
+        .summary-text { color: var(--text-main); font-size: 1.1rem; font-weight: 400; line-height: 1.7; }
+
+        /* Modern Architecture Grid Layout */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .architecture-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+        }
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(34, 211, 238, 0.2);
+        }
+        .feature-card h4 {
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
     </style>
 </head>
@@ -120,29 +146,47 @@
             <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
             Back to Engineering Portfolio
         </a>
-        <main>
+
+        <!-- Header Card -->
+        <header class="project-header-card">
             <div class="meta-header">
-                <div>
-                    <span class="company-tag">Masterworks</span>
-                    <h1>SASO: Automated Inspection Monitoring System</h1>
-                </div>
+                <span class="company-tag">Masterworks</span>
                 <span class="timeline">2025 - 2026</span>
             </div>
-            <div class="nda-banner">
+            <h1>SASO: Automated Inspection Monitoring System</h1>
+            <div class="nda-banner" style="margin-top: 1.5rem;">
                 <span>🔒</span>
-                <div><strong>Confidential Architecture Node:</strong> Original source implementation is subject to strict non-disclosure mappings. High-level infrastructural topology provided below defines open system-design workflows.</div>
+                <div><strong>Confidential Architecture Node:</strong> Original source implementation is subject to strict NDA rules. Architectural topology configured below maps generalized workflows.</div>
             </div>
-            <h3>📋 Executive Summary</h3>
-            <p>An enterprise-grade, multi-stage edge computer vision tracking architecture monitoring vehicle lifecycles through functional diagnostics pipelines. Maps trajectory states across deep loops and triggers instant messaging queues upon dangerous operational anomalies.</p>
-            
-            <h3>🛠️ Core Engineering Architecture</h3>
-            <ul>
-                <li><strong>Spatio-Temporal Tracking:</strong> Managed discrete camera flows tracing 360-degree profiles, braking arrays, and emissions checkpoints seamlessly.</li>
-                <li><strong>Real-Time Alerts:</strong> Wired geometric event structures via distributed Kafka message loops tracking entry/exit anomalies and directional flow violations.</li>
-                <li><strong>High-Throughput Inference:</strong> Trained custom YOLO11 engines deployed directly over NVIDIA A10 environments via DeepStream SDK runtimes inside NVIDIA Triton containers.</li>
-                <li><strong>VLM Error Corrections:</strong> Integrated Vision Transformer structures resolving extreme LPR glares and geometric target distortion states.</li>
-                <li><strong>Natural Language Core:</strong> Architected LangChain PostgreSQL Text-to-SQL RAG systems utilizing few-shot formatting loops and automated LLM-as-a-Judge evaluators.</li>
-            </ul>
+        </header>
+
+        <!-- Executive Summary -->
+        <h3>📋 Executive Summary</h3>
+        <p class="summary-text">An enterprise-grade, multi-stage edge computer vision tracking architecture monitoring vehicle lifecycles through functional diagnostics pipelines. Maps trajectory states across deep loops and triggers instant messaging queues upon dangerous operational anomalies.</p>
+
+        <!-- Technical Breakdown Grid -->
+        <h3>🛠️ Core Engineering Architecture</h3>
+        <main class="architecture-grid">
+            <div class="feature-card">
+                <h4>Spatio-Temporal Tracking</h4>
+                <p>Managed discrete camera flows tracing 360-degree profiles, braking arrays, and emissions checkpoints seamlessly across system zones.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Real-Time Alerts</h4>
+                <p>Wired geometric event structures via distributed Kafka message loops tracking entry/exit anomalies and directional flow violations.</p>
+            </div>
+            <div class="feature-card">
+                <h4>High-Throughput Inference</h4>
+                <p>Trained custom YOLO11 engines deployed directly over NVIDIA A10 environments via DeepStream SDK runtimes inside Triton containers.</p>
+            </div>
+            <div class="feature-card">
+                <h4>VLM Error Corrections</h4>
+                <p>Integrated Vision Transformer structures resolving extreme LPR glares and geometric target distortion states automatically.</p>
+            </div>
+            <div class="feature-card" style="grid-column: span 1;">
+                <h4>Natural Language Core</h4>
+                <p>Architected LangChain PostgreSQL Text-to-SQL RAG systems utilizing few-shot formatting loops and automated LLM-as-a-Judge evaluators.</p>
+            </div>
         </main>
     </div>
 </body>
